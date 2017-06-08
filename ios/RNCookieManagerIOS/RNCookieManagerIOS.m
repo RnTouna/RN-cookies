@@ -40,7 +40,7 @@ RCT_EXPORT_METHOD(setFromResponse:(NSURL *)url value:(NSDictionary *)value callb
 
 
 RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
-//     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
+    NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
 //     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
 //         [cookies setObject:c.value forKey:c.name];
 //     }
