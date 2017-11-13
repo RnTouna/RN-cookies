@@ -23,8 +23,8 @@ public class CookieManagerPackage implements ReactPackage {
         modules.add(new CookieManagerModule(reactContext));
         return modules;
     }
-
-    @Override
+    // Depreciated RN 0.47
+//     @Override public List<Class<? extends JavaScriptModule>> createJSModules() {
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
