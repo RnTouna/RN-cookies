@@ -40,19 +40,28 @@ RCT_EXPORT_METHOD(setFromResponse:(NSURL *)url value:(NSDictionary *)value callb
 
 
 RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
+//     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
+// //     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
+// //         [cookies setObject:c.value forKey:c.name];
+// //     }
+// //     callback(@[[NSNull null], cookies]);
+//     [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//         if (!error) {
+//             for (NSHTTPCookie *c in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
+//                 [cookies setObject:c.value forKey:c.name];
+//             }
+//         }
+//         callback(@[[NSNull null], cookies]);
+//     }] resume];
+    
+    resolver:(RCTPromiseResolveBlock)resolve
+    rejecter:(RCTPromiseRejectBlock)reject) {
     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
-//     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
-//         [cookies setObject:c.value forKey:c.name];
-//     }
-//     callback(@[[NSNull null], cookies]);
-    [[[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (!error) {
-            for (NSHTTPCookie *c in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies) {
-                [cookies setObject:c.value forKey:c.name];
-            }
-        }
-        callback(@[[NSNull null], cookies]);
-    }] resume];
+    for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
+        [cookies setObject:c.value forKey:c.name];
+    }
+//     resolve(cookies);
+    callback(@[[NSNull null], cookies]);
 }
 
 RCT_EXPORT_METHOD(clearAll:(RCTResponseSenderBlock)callback) {
