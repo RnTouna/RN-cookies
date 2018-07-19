@@ -54,13 +54,10 @@ RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
 //         callback(@[[NSNull null], cookies]);
 //     }] resume];
     
-    resolver:(RCTPromiseResolveBlock)resolve
-    rejecter:(RCTPromiseRejectBlock)reject) {
     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
         [cookies setObject:c.value forKey:c.name];
     }
-//     resolve(cookies);
     callback(@[[NSNull null], cookies]);
 }
 
