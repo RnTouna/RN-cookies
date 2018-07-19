@@ -53,12 +53,13 @@ RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
 //         }
 //         callback(@[[NSNull null], cookies]);
 //     }] resume];
-    
-    NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
+//}
+  
+  NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
         [cookies setObject:c.value forKey:c.name];
     }
-    callback(@[[NSNull null], cookies]);
+    resolve(cookies);
 }
 
 RCT_EXPORT_METHOD(clearAll:(RCTResponseSenderBlock)callback) {
