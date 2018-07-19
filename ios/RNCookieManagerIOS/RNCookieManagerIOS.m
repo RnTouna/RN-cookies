@@ -59,7 +59,7 @@ RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
         [cookies setObject:c.value forKey:c.name];
     }
-    resolve(cookies);
+    callback(@[[NSNull null], cookies]);
 }
 
 RCT_EXPORT_METHOD(clearAll:(RCTResponseSenderBlock)callback) {
