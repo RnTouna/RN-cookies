@@ -39,7 +39,7 @@ RCT_EXPORT_METHOD(setFromResponse:(NSURL *)url value:(NSDictionary *)value callb
 }
 
 
-RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
+//RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
 //     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
 // //     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
 // //         [cookies setObject:c.value forKey:c.name];
@@ -53,15 +53,16 @@ RCT_EXPORT_METHOD(get:(NSURL *)url callback:(RCTResponseSenderBlock)callback) {
 //         }
 //         callback(@[[NSNull null], cookies]);
 //     }] resume];
-    
-    resolver:(RCTPromiseResolveBlock)resolve
-    rejecter:(RCTPromiseRejectBlock)reject) {
+//}
+
+RCT_EXPORT_METHOD(get:(NSURL *)url
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject){
     NSMutableDictionary *cookies = [NSMutableDictionary dictionary];
     for (NSHTTPCookie *c in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url]) {
         [cookies setObject:c.value forKey:c.name];
     }
-//     resolve(cookies);
-    callback(@[[NSNull null], cookies]);
+    resolve(cookies);
 }
 
 RCT_EXPORT_METHOD(clearAll:(RCTResponseSenderBlock)callback) {
